@@ -15,12 +15,19 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
 - **Landing** (`#landing`): the pitch, a live mini stage that films itself, how it works, features, FAQ for kids and parents.
 - **My toons** (`#home`): new movie / new character, your movies and cast, the sticker book (8 achievements), picks from the Theater.
   Guests see a note that their toons live on this device; members who made toons as a guest on that device can move them in.
-- **Cast** (`#cast`): your characters and the premade cast (Blox, Pixel, Sir Clank, Noodle, Biscuit, Captain Beaky, Zorp,
-  Wiggles). Premade characters can be used directly in movies or copied ("Make it mine").
-- **Character builder** (`#build/<id>`): 8 body types (hero, stickman, robot, birdy, monster, pup, kitty, caterpillar) on
-  3 rigs (biped, four legs, caterpillar). Tabs: head (10), face (10 eyes, 9 mouths), hair & hats (15), body (9), arms & legs
-  (6/5 styles), hands & feet, extras (tail, wings, cape, sword, wand, balloon, shield, backpack, jetpack, guitar: each is an
+- **Cast** (`#cast`): your characters, the premade cast (26: Blox, Pixel, Sir Clank, Noodle, Biscuit, Captain Beaky, Zorp,
+  Wiggles, Ninja Kai, Astro Ava, Cowboy Tex, Boo, Rex, Prince Hoppy, Pumpkin Jack, Bjorn, Bamboo, Rusty, Squeak, Chef Pepper,
+  DJ Beats, Mr Bones, Coco, Rosie, Flash, Pip, Bun Bun) and the **props** (37 stage objects: ball, beach ball, box, present,
+  treasure chest, trees, bush, rock, flower pot, car, rocket, sailboat, skateboard, cake, pizza, apple, campfire, table, chair,
+  street lamp, arrow sign, house, snowman, jack-o'-lantern, trophy, toy bricks, drum, magic portal, UFO, cloud, sun, moon,
+  star, heart, balloons, rainbow). Premade characters and props can be used directly in movies or copied ("Make it mine";
+  a copied prop can be recoloured and resized).
+- **Character builder** (`#build/<id>`): 12 body types (hero, stickman, robot, birdy, monster, pup, kitty, caterpillar,
+  ghost, dino, froggy, bunny) on 3 rigs (biped, four legs, caterpillar). Tabs: head (18), face (15 eyes, 13 mouths), hair &
+  hats (25), body (14), arms & legs (6/6 styles, incl. no legs), hands & feet, extras (tail, wings, cape, sword, wand, balloon,
+  shield, backpack, jetpack, guitar, umbrella, hammer, flag, torch, ice cream, microphone, scarf, bug net: each is an
   extra stick on the rig), 6 colour slots × 24 colours + any colour, sizes (height, chunky, head, arms, legs), "Surprise me".
+  Props open in the same builder with just colours (main + second) and size.
   Live animated preview; tap a body part to open its tab. Autosaves.
 - **Moves / animator** (`#animate/<id>/<animId>`): each character's library of moves (15 starter moves for bipeds:
   idle, walk, run, sneak, jump, wave, talk, dance, cheer, sit, dizzy, kick, flap, fly, spin; 7 for four-legged, 5 for the
@@ -32,7 +39,8 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
   play; let go to stop. Recording over part of an old take replaces just that part. Facing follows the movement (or fixed),
   idle move when standing still, size, layering, 🐢 slow-mo recording, ✋ move mode (moves an actor's whole path).
   Timeline: rows per actor (takes), bubbles, voices, sounds, music; click to select, drag clips/bubbles to move them, click
-  the ruler to scrub. Panel tabs: Actor, Cast (add actors), Scene (14 drawn backgrounds, colours, your pictures; movie
+  the ruler to scrub. Panel tabs: Actor, Cast (add actors and props: props are held and recorded like actors, with their own
+  moves: still, bounce, spin, roll, wobble, float, shake; flying ones start in the sky), Scene (30 drawn backgrounds, colours, your pictures; movie
   length up to 2 min; depth by height), Sounds (22 sound effects, 8 music loops, voices, your uploads), Bubbles (say, think,
   shout, caption). **Voices**: record while the movie plays (muted), pick who's talking (their mouth follows the loudness),
   effects normal / giant / chipmunk / tiny / robot / echo. Bubbles also flap the mouth. Undo/redo, autosave with thumbnail,
@@ -74,7 +82,7 @@ python tools/deploy.py --push "Message"          # deploy: commit + push to GitH
 
 ```
 web/            core.js/core.css (shared engine + design tokens), app.js (header, footer, tab bar), pages/*.html
-web/pages/_tl_*.html   the ToonyLoony engine (window.TL): core (store), rig (characters), scenes, audio, movie, ui (dialogs)
+web/pages/_tl_*.html   the ToonyLoony engine (window.TL): core (store), rig (characters), rig_props (props), scenes, audio, movie, ui (dialogs)
 client_code/    Main.py (the only Anvil form: bridge to the server, uploads, sign-in), legal.py
 server_code/    common.py, Accounts.py, Feedback.py, Admin.py, DemoData.py, legal_server.py, Toons.py, Assets.py, Theater.py
 assets/         icon.svg + generated PNG icons (served at _/theme/<name>)
