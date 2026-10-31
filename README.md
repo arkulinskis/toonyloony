@@ -7,7 +7,7 @@ sounds, music and speech bubbles. Works without an account (everything stays in 
 saves toons in the cloud and lets you share a watch link. Built on [Anvil](https://anvil.works).
 
 - **App repo:** github.com/arkulinskis/toonyloony (branch `master`). Anvil pulls `master`.
-- **Live:** not published yet (planned: https://toonyloony.anvil.app).
+- **Live:** https://toonyloony.com (custom domain; Anvil address https://toonyloony.anvil.app)
 
 ## What it does
 
