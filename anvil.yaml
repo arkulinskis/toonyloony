@@ -340,16 +340,48 @@ db_schema:
     server: full
     title: Users
 metadata:
-  description: Build cartoon characters, animate them with joints and sticks, then hold to record them moving in your own
-    cartoon movie.
+  description: Build cartoon characters, animate them with joints and sticks, then hold and drag them to record them moving
+    in your own cartoon movie, with voices and music.
   logo_img: asset:icon-512.png
-  title: ToonyLoony
+  title: 'ToonyLoony: build and animate your own cartoon movies'
 name: ToonyLoony
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=961c0282d8\"></script>\n<meta name=\"viewport\" content=\"width=device-width,\
-    \ initial-scale=1, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#4757ff\">\n<meta name=\"apple-mobile-web-app-capable\"\
-    \ content=\"yes\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"\
-    https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800;900&display=swap\"\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=961c0282d8\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json\
+    \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://toonyloony.com/\">\n<meta name=\"robots\" content=\"\
+    index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"cartoon\
+    \ maker for kids, animation app for kids, make your own cartoon, stop motion alternative, character creator, animate characters\
+    \ online, kids movie maker, puppet animation, creative app for kids\">\n<meta name=\"author\" content=\"Arkvital\">\n\
+    <meta property=\"og:type\" content=\"website\">\n<meta property=\"og:site_name\" content=\"ToonyLoony\">\n<meta property=\"\
+    og:title\" content=\"ToonyLoony: build and animate your own cartoon movies\">\n<meta property=\"og:description\" content=\"\
+    Build cartoon characters, animate them with joints and sticks, then hold and drag them to record them moving in your own\
+    \ cartoon movie, with voices and music.\">\n<meta property=\"og:locale\" content=\"en_CA\">\n<meta property=\"og:url\"\
+    \ content=\"https://toonyloony.com/\">\n<meta property=\"og:image\" content=\"https://toonyloony.com/_/theme/og-image.png\"\
+    >\n<meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\">\n<meta property=\"\
+    og:image:alt\" content=\"ToonyLoony: Build cartoon characters, animate them and film your own movie\">\n<meta name=\"\
+    twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:title\" content=\"ToonyLoony: build and animate\
+    \ your own cartoon movies\">\n<meta name=\"twitter:description\" content=\"Build cartoon characters, animate them with\
+    \ joints and sticks, then hold and drag them to record them moving in your own cartoon movie, with voices and music.\"\
+    >\n<meta name=\"twitter:image\" content=\"https://toonyloony.com/_/theme/og-image.png\">\n<link rel=\"alternate\" type=\"\
+    text/plain\" title=\"ToonyLoony for AI assistants\" href=\"https://toonyloony.com/llms.txt\">\n<script type=\"application/ld+json\"\
+    >{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"WebApplication\", \"@id\": \"https://toonyloony.com/#app\"\
+    , \"name\": \"ToonyLoony\", \"url\": \"https://toonyloony.com/\", \"description\": \"Build cartoon characters, animate\
+    \ them with joints and sticks, then hold and drag them to record them moving in your own cartoon movie, with voices and\
+    \ music.\", \"image\": \"https://toonyloony.com/_/theme/og-image.png\", \"inLanguage\": \"en\", \"publisher\": {\"@id\"\
+    : \"https://arkvital.com/#org\"}, \"keywords\": \"cartoon maker for kids, animation app for kids, make your own cartoon,\
+    \ stop motion alternative, character creator, animate characters online, kids movie maker, puppet animation, creative\
+    \ app for kids\", \"applicationCategory\": \"MultimediaApplication\", \"operatingSystem\": \"Any (web browser)\", \"browserRequirements\"\
+    : \"Requires JavaScript and a modern web browser\", \"featureList\": [\"A character builder with a catalogue of parts\
+    \ and 26 premade characters\", \"Joints, sticks and keyframes to teach moves\", \"Hold and drag to record movement, layered\
+    \ with the rest of the cast\", \"37 props, voices, sounds, music and speech bubbles\", \"Works without an account; a free\
+    \ account shares a watch link\"], \"audience\": {\"@type\": \"Audience\", \"audienceType\": \"Young creators around 12\
+    \ years old (accounts are 16+, so a parent signs up)\"}}, {\"@type\": \"WebSite\", \"@id\": \"https://toonyloony.com/#site\"\
+    , \"url\": \"https://toonyloony.com/\", \"name\": \"ToonyLoony\", \"publisher\": {\"@id\": \"https://arkvital.com/#org\"\
+    }}, {\"@type\": \"Organization\", \"@id\": \"https://arkvital.com/#org\", \"name\": \"Arkvital\", \"url\": \"https://arkvital.com\"\
+    , \"email\": \"arkvital@outlook.com\", \"address\": {\"@type\": \"PostalAddress\", \"addressLocality\": \"Montreal\",\
+    \ \"addressRegion\": \"QC\", \"addressCountry\": \"CA\"}}]}</script>\n<!-- seo:end -->\n<meta name=\"viewport\" content=\"\
+    width=device-width, initial-scale=1, viewport-fit=cover\">\n<meta name=\"theme-color\" content=\"#4757ff\">\n<meta name=\"\
+    apple-mobile-web-app-capable\" content=\"yes\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link\
+    \ rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800;900&display=swap\"\
     \ rel=\"stylesheet\">\n<link id=\"ui-favicon\" rel=\"icon\" type=\"image/svg+xml\" href=\"_/theme/icon.svg?v=bb64e472ed\"\
     >\n<link rel=\"apple-touch-icon\" href=\"_/theme/icon-180.png?v=bb64e472ed\">\n<script>\n/* Keep our tab icon: Anvil adds\
     \ its own <link rel=\"icon\">, so drop any other icon link. */\n(function () {\n  function keep() {\n    var ours = document.getElementById('ui-favicon');\n\
