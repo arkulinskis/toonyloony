@@ -4184,10 +4184,30 @@
     bandLead: 'Pick a character. Hold it. Move it. Action!'
   };
 
-  /* The hero: a little stage that films itself. Blox walks along a path while a hand holds them; Biscuit replays behind. */
+  /* The hero: one stage, two layers. Left of the handle: the storyboard you'd make (poses, keyframes, the path you drew).
+     Right of it: the cartoon that comes out, playing. Drag the handle (it's a range input, so keys work too). */
   function heroArt() {
-    return '<div class="lp-art" aria-hidden="true"><div class="lp-stage"><canvas width="1280" height="720" data-herocv></canvas><span class="lp-recb"><i></i>REC</span></div>' +
-      '<span class="lp-tag t1">👆 Hold to record!</span><span class="lp-tag t2">◆ Keyframes</span><span class="lp-tag t3">🎙️ Voices</span></div>';
+    return '<div class="lp-art"><div class="lp-ba" data-ba><canvas width="1280" height="720" data-herobefore aria-hidden="true"></canvas>' +
+      '<div class="after" aria-hidden="true"><canvas width="1280" height="720" data-herocv></canvas></div>' +
+      '<span class="lbl l" aria-hidden="true">✏️ What you make</span><span class="lbl r" aria-hidden="true"><i></i>What you get</span>' +
+      '<input type="range" min="0" max="100" value="50" aria-label="Drag to compare the storyboard with the finished cartoon"><span class="handle"></span></div>' +
+      '<span class="lp-tag t1" aria-hidden="true">◆ Poses + a path</span><span class="lp-tag t2" aria-hidden="true">🎬 A cartoon!</span></div>';
+  }
+  // the storyboard side: squared paper, Blox in three onion-skinned walk poses, the dashed path, keyframe diamonds
+  function drawBefore(cv) {
+    var x = cv.getContext('2d'), W = 1280, H = 720, i;
+    x.fillStyle = '#f7f3e8'; x.fillRect(0, 0, W, H);
+    x.strokeStyle = 'rgba(71, 87, 255, .12)'; x.lineWidth = 2;
+    for (i = 0; i <= W; i += 48) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, H); x.stroke(); }
+    for (i = 0; i <= H; i += 48) { x.beginPath(); x.moveTo(0, i); x.lineTo(W, i); x.stroke(); }
+    x.strokeStyle = '#ff8a2b'; x.lineWidth = 7; x.setLineDash([18, 14]); x.beginPath(); x.moveTo(140, 640); x.bezierCurveTo(420, 560, 760, 680, 1140, 600); x.stroke(); x.setLineDash([]);
+    var ch = TL.PRESETS.p_blox, a = TL.findAnim(ch, 'walk');
+    [[260, .25, .3], [620, .5, .55], [980, .75, 1]].forEach(function (k) {
+      TL.drawChar(x, ch, TL.animPose(ch, a, k[1], 1), { x: k[0], y: 470, s: 1.5, alpha: k[2] });
+    });
+    x.fillStyle = '#ff8a2b'; x.font = '900 54px Nunito, sans-serif'; x.textAlign = 'center';
+    [260, 620, 980].forEach(function (px) { x.fillText('◆', px, 700); });
+    x.fillStyle = '#1a1d3a'; x.font = '800 30px Nunito, sans-serif'; x.textAlign = 'left'; x.fillText('Blox · walk · 3 keyframes', 40, 110);
   }
   function heroMovie() {
     var m = TL.newMovie('Hero'); m.bg = 'b:park'; m.dur = 8;
@@ -4237,7 +4257,7 @@
       : '<a class="ui-btn yellow lg" href="#home" data-go="home">🎬 ' + esc(C.cta) + '</a>' +
         '<a class="ui-btn lg" href="#theater" data-go="theater">🍿 Watch cartoons</a>';
     view.innerHTML =
-      '<section class="lp-hero"><div class="ui-wrap"><div>' +
+      '<section class="lp-hero"><div class="ui-wrap"><div class="lp-pitch">' +
         '<div class="eyebrow">' + esc(C.eyebrow) + '</div><h1>' + C.title + '</h1><p class="lp-lead">' + esc(C.lead) + '</p>' +
         '<div class="lp-cta">' + primary + '</div>' +
         '<div class="lp-proof">' + C.proof.map(function (p) { return '<span>' + UI.icon('check') + esc(p) + '</span>'; }).join('') + '</div>' +
@@ -4252,8 +4272,10 @@
       '<section class="lp-section"><div class="ui-wrap"><div class="lp-band"><div><h2>' + esc(C.bandTitle) + '</h2><p>' + esc(C.bandLead) + '</p></div>' +
         '<a class="ui-btn yellow lg" href="#home" data-go="home">🎬 ' + esc(C.cta) + '</a>' +
       '</div></div></section>';
-    var cv = view.querySelector('[data-herocv]');
+    var cv = view.querySelector('[data-herocv]'), before = view.querySelector('[data-herobefore]'), ba = view.querySelector('[data-ba]');
     if (cv) runHero(cv);
+    if (before) drawBefore(before);
+    if (ba) ba.querySelector('input').addEventListener('input', function (e) { ba.style.setProperty('--x', e.target.value + '%'); });
     stepPics(view);
   });
 })();
