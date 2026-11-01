@@ -346,7 +346,7 @@ metadata:
   title: 'ToonyLoony: build and animate your own cartoon movies'
 name: ToonyLoony
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=961c0282d8\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=544c5a68fd\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json\
     \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://toonyloony.com/\">\n<meta name=\"robots\" content=\"\
     index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"cartoon\
     \ maker for kids, animation app for kids, make your own cartoon, stop motion alternative, character creator, animate characters\
