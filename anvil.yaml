@@ -346,7 +346,7 @@ metadata:
   title: 'ToonyLoony: build and animate your own cartoon movies'
 name: ToonyLoony
 native_deps:
-  head_html: "<script src=\"_/theme/legal-kit.js?v=544c5a68fd\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json\
+  head_html: "<script src=\"_/theme/legal-kit.js?v=d7ddabc22d\"></script>\n<!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json\
     \ and run seo.py, not here) -->\n<link rel=\"canonical\" href=\"https://toonyloony.com/\">\n<meta name=\"robots\" content=\"\
     index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n<meta name=\"keywords\" content=\"cartoon\
     \ maker for kids, animation app for kids, make your own cartoon, stop motion alternative, character creator, animate characters\
@@ -390,7 +390,7 @@ native_deps:
     })();\n</script>\n\n<!-- Prepsto feedback panel: every \"Submit feedback\" link and button opens it (it is the only feedback\
     \ channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->\n\
     <script src=\"https://prepsto.com/_/theme/widget.js\" data-prepsto=\"ptkszwg\" data-button=\"false\" data-label=\"Submit\
-    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=3db04c9335\">\n<script src=\"_/theme/app.js?v=992fa85263\"\
+    \ feedback\" async></script>\n<link rel=\"stylesheet\" href=\"_/theme/app.css?v=14e64dada2\">\n<script src=\"_/theme/app.js?v=2c7a744081\"\
     ></script>\n"
 package_name: ToonyLoony
 runtime_options:
@@ -411,9 +411,13 @@ services:
     remember_me_days: 30
     require_secure_passwords: true
     use_email: true
+    use_google: true
   server_config:
     user_table: users
   source: /runtime/services/anvil/users.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/google.yml
 startup:
   module: Main
   type: form
