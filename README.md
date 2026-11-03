@@ -57,7 +57,7 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
 - **Toons:** every shared movie: watch, feature in the Theater / un-feature, stop sharing.
 - **Feedback inbox:** New / Read / Done, private notes. Toon reports arrive here ("Report about the cartoon ...").
 - **Users:** search, make admin, disable an account.
-- **Demo data:** 3 fictional creators and 5 featured cartoons (made of the premade cast, scenes and sounds); remove or reload.
+- **Demo data:** 4 fictional creators and 15 featured cartoons (made of the premade cast, props, scenes and sounds); remove or reload. New cartoons reach a site that already has the demo by themselves (`DEMO_SET` top-up).
 
 ## Setting it up in Anvil (once)
 
