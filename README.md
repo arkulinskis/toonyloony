@@ -15,7 +15,7 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
 - **Landing** (`#landing`): the pitch, a live mini stage that films itself, how it works, features, FAQ for kids and parents.
 - **My toons** (`#home`): new movie / new character, your movies and cast, the sticker book (8 achievements), picks from the Theater.
   Guests see a note that their toons live on this device; members who made toons as a guest on that device can move them in.
-- **Cast** (`#cast`): your characters, the premade cast (26: Blox, Pixel, Sir Clank, Noodle, Biscuit, Captain Beaky, Zorp,
+- **Cast** (`#cast`): your characters, the premade cast (27: Blox, Pixel, Sir Clank, Noodle, Biscuit, Captain Beaky, Zorp,
   Wiggles, Ninja Kai, Astro Ava, Cowboy Tex, Boo, Rex, Prince Hoppy, Pumpkin Jack, Bjorn, Bamboo, Rusty, Squeak, Chef Pepper,
   DJ Beats, Mr Bones, Coco, Rosie, Flash, Pip, Bun Bun) and the **props** (37 stage objects: ball, beach ball, box, present,
   treasure chest, trees, bush, rock, flower pot, car, rocket, sailboat, skateboard, cake, pizza, apple, campfire, table, chair,
