@@ -37,7 +37,7 @@ SEO = {
   "Hold a character and drag it around to record its movement while everyone else replays theirs, and add voices, sounds, music and speech bubbles. It works without an account (everything stays in the browser); a free account saves toons in the cloud and shares a watch link."
  ],
  "features": [
-  "A character builder with a catalogue of parts and 26 premade characters",
+  "A character builder with a catalogue of parts and 27 premade characters",
   "Joints, sticks and keyframes to teach moves",
   "Hold and drag to record movement, layered with the rest of the cast",
   "37 props, voices, sounds, music and speech bubbles",
@@ -58,7 +58,7 @@ SEO = {
   ]
  ],
  "site": "https://toonyloony.com",
- "updated": "2026-10-31",
+ "updated": "2026-11-03",
  "icon": "icon-512.png",
  "colors": {
   "bg": "#4757ff",

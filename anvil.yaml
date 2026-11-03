@@ -371,7 +371,7 @@ native_deps:
     \ stop motion alternative, character creator, animate characters online, kids movie maker, puppet animation, creative\
     \ app for kids\", \"applicationCategory\": \"MultimediaApplication\", \"operatingSystem\": \"Any (web browser)\", \"browserRequirements\"\
     : \"Requires JavaScript and a modern web browser\", \"featureList\": [\"A character builder with a catalogue of parts\
-    \ and 26 premade characters\", \"Joints, sticks and keyframes to teach moves\", \"Hold and drag to record movement, layered\
+    \ and 27 premade characters\", \"Joints, sticks and keyframes to teach moves\", \"Hold and drag to record movement, layered\
     \ with the rest of the cast\", \"37 props, voices, sounds, music and speech bubbles\", \"Works without an account; a free\
     \ account shares a watch link\"], \"audience\": {\"@type\": \"Audience\", \"audienceType\": \"Young creators around 12\
     \ years old (accounts are 16+, so a parent signs up)\"}}, {\"@type\": \"WebSite\", \"@id\": \"https://toonyloony.com/#site\"\
