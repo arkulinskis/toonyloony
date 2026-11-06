@@ -14,7 +14,7 @@ def _card(r, me=None, with_data=False):
     out = {"key": r["share_key"], "name": r["name"], "author": C.name_of(r["owner"]), "thumb": r["thumb"],
            "dur": r["dur"] or 0, "views": r["views"] or 0, "featured": bool(r["featured"]),
            "mine": me is not None and r["owner"] == me, "demo": bool(r["is_demo"]),
-           "bg": d.get("bg") if isinstance(d.get("bg"), str) else None}
+           "bg": d.get("bg") if isinstance(d.get("bg"), str) else None, "format": Toons.shape_of(d)}
     if with_data and not r["thumb"]:
         out["data"] = d  # no picture yet (demo toons): the page draws a poster from the movie itself
     return out
@@ -61,7 +61,7 @@ def watch_get(key):
     viewed = anvil.server.session.get("viewed") or []
     if key not in viewed and not (me is not None and owner == me):
         r["views"] = (r["views"] or 0) + 1
-        anvil.server.session["viewed"] = (viewed + [key])[-200:]
+        getattr(anvil.server, "session")["viewed"] = (viewed + [key])[-200:]
     return C.ok(movie=dict(data, id=r["uid"], name=r["name"]), chars=chars, assets=assets,
                 card=_card(r, me), is_admin=C.is_admin(me))
 
@@ -90,7 +90,8 @@ def _admin_row(r):
     return {"key": r["share_key"], "name": r["name"], "author": C.name_of(r["owner"]),
             "email": r["owner"]["email"] if r["owner"] is not None and not r["is_demo"] else "",
             "featured": bool(r["featured"]), "views": r["views"] or 0, "dur": r["dur"] or 0,
-            "thumb": r["thumb"], "updated": C.iso(r["updated"]), "demo": bool(r["is_demo"])}
+            "thumb": r["thumb"], "updated": C.iso(r["updated"]), "demo": bool(r["is_demo"]),
+            "format": Toons.shape_of(r["data"] or {})}
 
 
 @anvil.server.callable(require_user=True)

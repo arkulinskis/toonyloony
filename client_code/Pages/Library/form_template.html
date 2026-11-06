@@ -1,0 +1,43 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ui-page-head">
+        <div><h1>🎵 Library</h1><anvil-component type="Label" name="lead_label" prop:role='["muted-text"]'></anvil-component></div>
+      </div>
+      <nav class="ui-tabs" aria-label="Library">
+        <a href="#library/sound" anvil:name="tab_sound">🔊 Sounds</a>
+        <a href="#library/music" anvil:name="tab_music">🎵 Music</a>
+        <a href="#library/voice" anvil:name="tab_voice">🎙️ Voices</a>
+        <a href="#library/bg" anvil:name="tab_bg">🖼️ Pictures</a>
+      </nav>
+      <div class="lb-actions">
+        <anvil-component type="Button" name="record_button" prop:text="Record a voice" prop:role='["btn", "btn-rec", "ic-mic"]'></anvil-component>
+        <anvil-component type="Button" name="upload_button" prop:role='["btn", "btn-primary", "ic-upload"]'></anvil-component>
+      </div>
+      <div anvil:name="mine_part">
+        <h2 class="lb-h">Yours</h2>
+        <div class="lb-grid" anvil:name="mine_sounds_box">
+          <anvil-component type="RepeatingPanel" name="mine_sounds" prop:item_template="ToonyLoony.Items.SoundCard" prop:role='["contents"]'></anvil-component>
+        </div>
+        <div class="lb-pics" anvil:name="mine_pics_box">
+          <anvil-component type="RepeatingPanel" name="mine_pics" prop:item_template="ToonyLoony.Items.PicCard" prop:role='["contents"]'></anvil-component>
+        </div>
+      </div>
+      <div class="ui-empty" anvil:name="no_voices">
+        <span class="ui-empty-emoji" aria-hidden="true">🎙️</span>
+        <h2>No voices yet</h2>
+        <p>Record one here, or right in the studio while your movie plays.</p>
+      </div>
+      <div anvil:name="pre_part">
+        <anvil-component type="Label" name="pre_title" prop:role='["lb-h"]'></anvil-component>
+        <div class="lb-grid" anvil:name="pre_sounds_box">
+          <anvil-component type="RepeatingPanel" name="pre_sounds" prop:item_template="ToonyLoony.Items.SoundCard" prop:role='["contents"]'></anvil-component>
+        </div>
+        <div class="lb-pics" anvil:name="pre_pics_box">
+          <anvil-component type="RepeatingPanel" name="pre_pics" prop:item_template="ToonyLoony.Items.PicCard" prop:role='["contents"]'></anvil-component>
+        </div>
+      </div>
+      <p class="small muted lb-rules">Only upload sounds and pictures you made yourself or are allowed to use. Never upload pictures of real people without asking them.</p>
+    </div>
+  </anvil-block>
+</anvil-form>

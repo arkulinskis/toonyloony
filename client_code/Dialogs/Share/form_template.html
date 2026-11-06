@@ -1,0 +1,21 @@
+<div class="ui dlg">
+  <div class="tl-modal-h"><span class="big" aria-hidden="true">🍿</span><anvil-component type="Label" name="title_label" prop:text="Share your movie" prop:role='["dlg-title"]'></anvil-component></div>
+  <div anvil:name="off_part">
+    <p class="muted">Get a link that lets people watch your movie. Only share it with people you know. You can stop sharing any time.</p>
+    <div class="ui-row end">
+      <anvil-component type="Button" name="later_button" prop:text="Not now" prop:role='["btn", "btn-ghost"]'></anvil-component>
+      <anvil-component type="Button" name="on_button" prop:text="Make a link" prop:role='["btn", "btn-yellow", "ic-share"]'></anvil-component>
+    </div>
+  </div>
+  <div anvil:name="on_part">
+    <p class="muted">Anyone with this link can watch your movie (not change it). It isn't listed anywhere unless we feature it in the Theater.</p>
+    <div class="tl-link">
+      <anvil-component type="TextBox" name="link_box"></anvil-component>
+      <anvil-component type="Button" name="copy_button" prop:text="Copy" prop:role='["btn", "btn-primary", "ic-copy"]'></anvil-component>
+    </div>
+    <div class="ui-row between dlg-actions">
+      <a class="ui-btn" anvil:name="watch_link" href="#theater" anvil:on-dom:click="self.watch_click"><i class="ic ic-play"></i>Watch it</a>
+      <anvil-component type="Button" name="off_button" prop:text="Stop sharing" prop:role='["btn", "btn-danger"]'></anvil-component>
+    </div>
+  </div>
+</div>

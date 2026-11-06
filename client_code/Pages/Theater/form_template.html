@@ -1,0 +1,20 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="th-hero"><h1>🍿 The Theater</h1><p class="muted">Cartoons made with ToonyLoony. Grab some popcorn!</p></div>
+      <div class="th-cards" anvil:name="featured_box">
+        <anvil-component type="RepeatingPanel" name="featured_panel" prop:item_template="ToonyLoony.Items.TheaterCard" prop:role='["contents"]'></anvil-component>
+      </div>
+      <div class="ui-empty" anvil:name="empty_box">
+        <span class="ui-empty-emoji" aria-hidden="true">🎞️</span><h2>Nothing showing yet</h2><p>The first cartoons will be here soon.</p>
+      </div>
+      <div anvil:name="mine_part">
+        <div class="tl-sec"><h2>Your shared movies</h2><span class="sec-note">Only people with the link can see these</span></div>
+        <div class="th-cards">
+          <anvil-component type="RepeatingPanel" name="mine_panel" prop:item_template="ToonyLoony.Items.TheaterCard" prop:role='["contents"]'></anvil-component>
+        </div>
+      </div>
+      <div class="wt-cta wt-cta-gap"><div><h2>Make your own cartoon!</h2><p>Build a character, hold it, move it. It's that easy.</p></div><a class="ui-btn yellow lg" href="#home">🎬 Start making</a></div>
+    </div>
+  </anvil-block>
+</anvil-form>

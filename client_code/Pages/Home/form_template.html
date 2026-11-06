@@ -1,0 +1,67 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <section class="hm-hero">
+        <div>
+          <anvil-component type="Label" name="hello_label" prop:role='["hm-hello"]'></anvil-component>
+          <anvil-component type="Label" name="lead_label" prop:role='["hm-lead"]'></anvil-component>
+          <div class="ui-row">
+            <anvil-component type="Button" name="new_movie_button" prop:text="🎬 New movie" prop:role='["btn", "btn-yellow", "btn-lg"]'></anvil-component>
+            <anvil-component type="Button" name="new_char_button" prop:text="🧍 New character" prop:role='["btn", "btn-lg", "hm-ghost"]'></anvil-component>
+          </div>
+        </div>
+        <canvas width="360" height="270" anvil:dom-node="duo" aria-hidden="true"></canvas>
+      </section>
+
+      <div class="tl-banner" anvil:name="import_banner">
+        <span class="big" aria-hidden="true">📦</span>
+        <anvil-component type="Label" name="import_label" prop:role='["banner-text"]'></anvil-component>
+        <anvil-component type="Button" name="import_button" prop:text="Move them in" prop:role='["btn", "btn-primary"]'></anvil-component>
+      </div>
+      <div class="tl-banner" anvil:name="guest_banner">
+        <span class="big" aria-hidden="true">🧸</span>
+        <p>You're playing as a guest: your toons are saved on this device only. A grown-up (16+) can make a free account to keep them safe and share them.</p>
+        <a class="ui-btn" href="#auth/signup">Make an account</a>
+      </div>
+
+      <div class="tl-sec">
+        <h2>🎬 My movies</h2>
+        <anvil-component type="Button" name="new_movie_small" prop:text="New movie" prop:role='["btn", "btn-sm", "ic-plus"]'></anvil-component>
+      </div>
+      <div class="tl-tiles hm-movies">
+        <anvil-component type="RepeatingPanel" name="movies_panel" prop:item_template="ToonyLoony.Items.MovieTile" prop:role='["contents"]'></anvil-component>
+        <button type="button" class="tl-tile new" anvil:on-dom:click="self.new_movie_click"><i class="ic ic-plus"></i><b>New movie</b><span class="sub">Pick a shape, a place and some actors</span></button>
+      </div>
+
+      <div class="tl-sec">
+        <h2>🧍 My cast</h2>
+        <a class="ui-btn sm" href="#cast">See all <i class="ic ic-arrow"></i></a>
+      </div>
+      <div class="tl-tiles">
+        <anvil-component type="RepeatingPanel" name="cast_panel" prop:item_template="ToonyLoony.Items.CharTile" prop:role='["contents"]'></anvil-component>
+        <button type="button" class="tl-tile new" anvil:on-dom:click="self.new_char_click"><i class="ic ic-plus"></i><b>New character</b><span class="sub">Heads, hats, capes...</span></button>
+      </div>
+
+      <div class="tl-sec">
+        <h2>⭐ Sticker book</h2>
+        <anvil-component type="Label" name="sticker_count" prop:role='["sec-note"]'></anvil-component>
+      </div>
+      <div class="ui-card">
+        <div class="hm-quest"><div class="bar" role="img" anvil:dom-node="quest"><i anvil:dom-node="quest_fill"></i></div></div>
+        <div class="tl-stickers">
+          <anvil-component type="RepeatingPanel" name="stickers_panel" prop:item_template="ToonyLoony.Items.Sticker" prop:role='["contents"]'></anvil-component>
+        </div>
+      </div>
+
+      <div anvil:name="theater_part">
+        <div class="tl-sec">
+          <h2>🍿 In the Theater</h2>
+          <a class="ui-btn sm" href="#theater">More <i class="ic ic-arrow"></i></a>
+        </div>
+        <div class="th-cards">
+          <anvil-component type="RepeatingPanel" name="theater_panel" prop:item_template="ToonyLoony.Items.TheaterCard" prop:role='["contents"]'></anvil-component>
+        </div>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

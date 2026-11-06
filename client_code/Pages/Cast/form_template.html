@@ -1,0 +1,22 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap">
+      <div class="ui-page-head">
+        <div><h1>🧍 Your cast</h1><p class="muted">Every character has its own library of moves. Tap one to dress it up or teach it new moves.</p></div>
+        <anvil-component type="Button" name="new_button" prop:text="New character" prop:role='["btn", "btn-yellow", "ic-plus"]'></anvil-component>
+      </div>
+      <div class="tl-tiles">
+        <anvil-component type="RepeatingPanel" name="mine_panel" prop:item_template="ToonyLoony.Items.CharTile" prop:role='["contents"]'></anvil-component>
+        <button type="button" class="tl-tile new" anvil:on-dom:click="self.new_click"><i class="ic ic-plus"></i><b>New character</b><span class="sub">12 body types to start from</span></button>
+      </div>
+      <div class="tl-sec"><h2>🌟 Premade cast</h2><span class="sec-note">Use them in any movie, or make one yours</span></div>
+      <div class="tl-tiles">
+        <anvil-component type="RepeatingPanel" name="presets_panel" prop:item_template="ToonyLoony.Items.CharTile" prop:role='["contents"]'></anvil-component>
+      </div>
+      <div class="tl-sec"><h2>🎁 Props</h2><span class="sec-note">Things for your stage that move when you hold them</span></div>
+      <div class="tl-tiles">
+        <anvil-component type="RepeatingPanel" name="props_panel" prop:item_template="ToonyLoony.Items.CharTile" prop:role='["contents"]'></anvil-component>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

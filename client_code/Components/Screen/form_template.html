@@ -1,0 +1,15 @@
+---
+custom_component: true
+properties:
+  - name: screen
+    type: string
+    default_value: ""
+    description: Which engine screen to show (build, animate or studio in theme/assets/tl-screens.js)
+toolbox_item:
+  title: Engine screen
+  group: ToonyLoony
+help_text: |
+  One of ToonyLoony's JavaScript editors (the character builder, the animator, the studio), mounted when the component
+  appears and destroyed (with a last autosave) when it leaves. Call mount(args) with the address parts.
+---
+<div class="tl-screen-host"><div anvil:dom-node="host"></div></div>

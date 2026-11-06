@@ -4,7 +4,10 @@ A cartoon-making studio for young creators (designed for about 12-year-olds, in 
 characters from a catalogue of parts, teach them moves with joints, sticks and keyframes, then place them on a stage,
 **hold a character and drag it around to record its movement** while everyone else replays theirs, and add voices,
 sounds, music and speech bubbles. Works without an account (everything stays in the browser); a free account (16+)
-saves toons in the cloud and lets you share a watch link. Built on [Anvil](https://anvil.works).
+saves toons in the cloud and lets you share a watch link. Movies come in four canvas shapes: **Wide 16:9** (YouTube),
+**Reel 9:16** (Reels, TikTok, Shorts), **Square 1:1** (Instagram posts) and **Portrait 4:5** (the Instagram feed).
+Built on [Anvil](https://anvil.works) as native Anvil Forms (Python Forms with HTML templates; the drawing, audio and
+editor engines are JavaScript).
 
 - **App repo:** github.com/arkulinskis/toonyloony (branch `master`). Anvil pulls `master`.
 - **Live:** https://toonyloony.com (custom domain; Anvil address https://toonyloony.anvil.app)
@@ -13,7 +16,7 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
 
 **For everyone (guests too, saved in the browser's IndexedDB):**
 - **Landing** (`#landing`): the pitch, a live mini stage that films itself, how it works, features, FAQ for kids and parents.
-- **My toons** (`#home`): new movie / new character, your movies and cast, the sticker book (8 achievements), picks from the Theater.
+- **My toons** (`#home`): new movie (shape, name, place, actors) / new character, your movies and cast, the sticker book (8 achievements), picks from the Theater.
   Guests see a note that their toons live on this device; members who made toons as a guest on that device can move them in.
 - **Cast** (`#cast`): your characters, the premade cast (27: Blox, Pixel, Sir Clank, Noodle, Biscuit, Captain Beaky, Zorp,
   Wiggles, Ninja Kai, Astro Ava, Cowboy Tex, Boo, Rex, Prince Hoppy, Pumpkin Jack, Bjorn, Bamboo, Rusty, Squeak, Chef Pepper,
@@ -34,7 +37,14 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
   caterpillar). Keyframe editor: drag joint dots to bend (FK), drag the square to move the body, tilt slider, frame strip with
   ◆ keys, onion skin, copy/paste/mirror/reset pose, frames count, speed (fps), loop, play. New / rename / copy / delete moves,
   bring back starter moves. Keyboard: space, arrows, K.
-- **Studio** (`#studio/<id>`): the stage (16:9, 1280×720 units) and the **hold-to-record** mechanic: tap an actor to pick it
+- **Canvas shapes:** Wide 16:9, Reel 9:16, Square 1:1, Portrait 4:5. Picked in the New movie dialog (the last choice is
+  remembered) and changeable any time in the studio (the shape button in the top bar, or Scene → Canvas shape). The stage
+  stays 1280×720 units and the shape is a camera frame over it, so every background, prop and old movie works in every
+  shape; a **Camera** slider slides a narrow frame left or right over the place. Switching to a narrower shape offers to
+  **squeeze everyone in** (actors' places and paths move into the frame; Undo puts them back). Bubbles and captions stay
+  inside the frame, uploaded pictures fill it. Videos come out at 1280×720, 720×1280, 1080×1080 or 864×1080; the Make a
+  video dialog can also crop a movie to another shape. Tiles, Theater cards and Admin show a 📱 Reel / 🟨 Square / 🖼️ Portrait badge.
+- **Studio** (`#studio/<id>`): the stage (in the movie's shape, over 1280×720 stage units) and the **hold-to-record** mechanic: tap an actor to pick it
   and choose the move + speed for its next take; press and hold it (or start dragging) and the clock runs, others replay, sounds
   play; let go to stop. Recording over part of an old take replaces just that part. Facing follows the movement (or fixed),
   idle move when standing still, size, layering, 🐢 slow-mo recording, ✋ move mode (moves an actor's whole path).
@@ -44,11 +54,11 @@ saves toons in the cloud and lets you share a watch link. Built on [Anvil](https
   length up to 2 min; depth by height), Sounds (22 sound effects, 8 music loops, voices, your uploads), Bubbles (say, think,
   shout, caption). **Voices**: record while the movie plays (muted), pick who's talking (their mouth follows the loudness),
   effects normal / giant / chipmunk / tiny / robot / echo. Bubbles also flap the mouth. Undo/redo, autosave with thumbnail,
-  **download a video** (MP4 or WebM, recorded in the browser), **share** (members).
+  **download a video** (MP4 or WebM, recorded in the browser, in the movie's shape or cropped to another), **share** (members).
 - **Library** (`#library/<tab>`): premade sounds, music and places; your uploads (sounds, music, voices, pictures):
   listen, upload, record a voice, rename, delete.
 - **Theater** (`#theater`): featured cartoons (admin-picked) and your shared ones. **Watch** (`#watch/<key>`): the player
-  (play, scrub, full screen), copy link, report, "make your own".
+  in the movie's own shape (play, scrub, full screen), copy link, report, "make your own".
 
 **For members (16+):** everything above saved in their account, share links, moving guest toons in.
 
@@ -90,19 +100,20 @@ What this project uses besides its own code. Generated by `APP_MAKER/tools/libra
 See `.claude/skills/toonyloony/SKILL.md`. In short:
 
 ```
-python -I tools/check.py --ui                    # syntax, server tests, headless UI tests → ALL CHECKS PASSED
-python -I tools/preview/devserver.py 8765        # the app on in-memory data: http://localhost:8765/  (?as=ana#home, ?as=admin#admin)
-python tools/deploy.py                           # dry run (needs PyYAML, so no -I)
-python tools/deploy.py --push "Message"          # deploy: commit + push to GitHub, Anvil pulls it
+python tools/check.py                 # Anvil's validator, JS syntax, asset hashes, server tests, design check -> ALL CHECKS PASSED
+python -I tools/ui_test.py            # the app in the Anvil App Server (Docker) + headless Chrome -> ALL UI TESTS PASSED
+python -I tools/ui_test.py --shots D  # screenshots of every page (desktop + phone, light + dark)
+git push origin master                # deploy: Anvil pulls master
 ```
 
 ## Project layout
 
 ```
-web/            core.js/core.css (shared engine + design tokens), app.js (header, footer, tab bar), pages/*.html
-web/pages/_tl_*.html   the ToonyLoony engine (window.TL): core (store), rig (characters), rig_props (props), scenes, audio, movie, ui (dialogs)
-client_code/    Main.py (the only Anvil form: bridge to the server, uploads, sign-in), legal.py
-server_code/    common.py, Accounts.py, Feedback.py, Admin.py, DemoData.py, legal_server.py, Toons.py, Assets.py, Theater.py
-assets/         icon.svg + generated PNG icons (served at _/theme/<name>)
-tools/          sync_to_anvil.py (settings + table schema), deploy.py, check.py, preview/ (dev server, UI tests, screenshots), testing/
+client_code/   startup.py, router.py (pages + addresses), state.py, auth.py, tl.py (the bridge to the JS engines), legal.py
+               Layouts/Shell, Pages/ (Landing, Home, Cast, Build, Animate, Studio, Library, Theater, Watch, Auth, Profile, Admin)
+               Components/ (Screen = an editor engine, Player), Items/ (tiles, cards, pickers), Dialogs/ (New movie, Export, Voice ...)
+server_code/   common.py, Accounts.py, Feedback.py, Admin.py, DemoData.py, legal_server.py, Toons.py, Assets.py, Theater.py, seo_routes.py
+theme/assets/  app.css (tokens, design kit, every page, the role layer), icons.css, app-kit.js, tl-kit.js (UI helpers for the engines),
+               tl-core/rig/props/scenes/audio/movie/ui/show/screens.js (the ToonyLoony engines), icon.svg + PNG icons, theme.css (spinner)
+tools/         check.py, assets.py, build_icons.py, make_icons.py, ui_test.py + ui/ (flow, phone, admin, a11y, design), live/drive.mjs, testing/
 ```

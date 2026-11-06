@@ -1,0 +1,19 @@
+<div class="ui dlg">
+  <div class="tl-modal-h"><span class="big" aria-hidden="true">📼</span><anvil-component type="Label" name="title_label" prop:text="Make a video" prop:role='["dlg-title"]'></anvil-component></div>
+  <anvil-component type="Label" name="lead_label" prop:role='["muted-text"]'></anvil-component>
+  <div anvil:name="shape_part">
+    <h3 class="tl-step">Shape</h3>
+    <div class="st-shapes">
+      <anvil-component type="RepeatingPanel" name="shapes_panel" prop:item_template="ToonyLoony.Items.ShapePick" prop:role='["contents"]'></anvil-component>
+    </div>
+    <anvil-component type="Label" name="shape_note" prop:role='["fine-print", "ex-note"]'></anvil-component>
+  </div>
+  <div class="ex-prev" anvil:name="prev_box"><canvas anvil:dom-node="prev" aria-hidden="true"></canvas></div>
+  <div class="tl-progress" anvil:name="progress_box"><i anvil:dom-node="bar"></i></div>
+  <p class="small muted" anvil:dom-node="msg" role="status"></p>
+  <div class="ui-row end dlg-actions">
+    <anvil-component type="Button" name="cancel_button" prop:text="Cancel" prop:role='["btn", "btn-ghost"]'></anvil-component>
+    <anvil-component type="Button" name="start_button" prop:text="Record the video" prop:role='["btn", "btn-primary", "ic-film"]'></anvil-component>
+    <anvil-component type="Button" name="download_button" prop:text="Download" prop:role='["btn", "btn-go", "ic-download"]'></anvil-component>
+  </div>
+</div>
