@@ -1,0 +1,27 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="ui-wrap wt-wrap">
+      <a class="ui-btn ghost sm" href="#theater"><i class="ic ic-back"></i>Theater</a>
+      <div anvil:name="found_part">
+        <div class="wt-head">
+          <div>
+            <anvil-component type="Label" name="title_label" prop:role='["wt-title"]'></anvil-component>
+            <anvil-component type="Label" name="meta_label" prop:role='["wt-meta"]'></anvil-component>
+          </div>
+          <div class="ui-row">
+            <a class="ui-btn" anvil:name="edit_link" href="#home"><i class="ic ic-edit"></i>Edit</a>
+            <anvil-component type="Button" name="copy_button" prop:text="Copy link" prop:role='["btn", "ic-copy"]'></anvil-component>
+            <anvil-component type="Button" name="report_button" prop:text="Report" prop:role='["btn", "btn-ghost", "ic-info"]'></anvil-component>
+          </div>
+        </div>
+        <anvil-component type="ToonyLoony.Components.Player" name="player"></anvil-component>
+        <div class="wt-cta"><div><h2>Want to make one like this?</h2><p>Build a character, teach it moves, then hold it and drag it around to film. Free!</p></div><a class="ui-btn yellow lg" href="#home">🎬 Start making</a></div>
+      </div>
+      <div class="ui-empty" anvil:name="missing_part">
+        <span class="ui-empty-emoji" aria-hidden="true">🎞️</span><h2>This cartoon isn't here</h2>
+        <anvil-component type="Label" name="missing_label"></anvil-component>
+        <a class="ui-btn" href="#theater">Go to the Theater</a>
+      </div>
+    </div>
+  </anvil-block>
+</anvil-form>

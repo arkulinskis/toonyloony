@@ -1,0 +1,103 @@
+<anvil-form layout="ToonyLoony.Layouts.Shell">
+  <anvil-block slot="content">
+    <div class="lp">
+      <section class="lp-hero">
+        <div class="ui-wrap">
+          <div class="lp-pitch">
+            <h1>Build a toon. <em>Hold it.</em> Make it move!</h1>
+            <p class="lp-lead">Your own cartoon studio. Snap together a character from heads, hats, capes and jetpacks. Teach it moves with joints and sticks. Then press and hold it on the stage and drag it around: ToonyLoony records every step. Add voices, sounds and music, and you made a cartoon!</p>
+            <div class="lp-cta" anvil:name="guest_cta">
+              <a class="ui-btn yellow lg" href="#home">🎬 Start making</a>
+              <a class="ui-btn lg" href="#theater">🍿 Watch cartoons</a>
+            </div>
+            <div class="lp-cta" anvil:name="member_cta">
+              <a class="ui-btn yellow lg" href="#home">🎬 Open my studio</a>
+              <a class="ui-btn lg" href="#theater">🍿 Watch cartoons</a>
+            </div>
+            <div class="lp-proof">
+              <span><i class="ic ic-check"></i>Free</span>
+              <span><i class="ic ic-check"></i>No account needed to play</span>
+              <span><i class="ic ic-check"></i>Works on tablets too</span>
+              <span><i class="ic ic-check"></i>Wide, Reel and Square videos</span>
+            </div>
+            <p class="small muted lp-grown" anvil:name="grown_note">Grown-ups (16+): <a href="#auth/signup">make a free account</a> to save toons in the cloud and share them.</p>
+          </div>
+          <div class="lp-art">
+            <div class="lp-ba" anvil:dom-node="ba">
+              <canvas width="1280" height="720" anvil:dom-node="before" aria-hidden="true"></canvas>
+              <div class="after" aria-hidden="true"><canvas width="1280" height="720" anvil:dom-node="after"></canvas></div>
+              <span class="lbl l" aria-hidden="true">✏️ What you make</span><span class="lbl r" aria-hidden="true"><i></i>What you get</span>
+              <input type="range" min="0" max="100" value="50" anvil:dom-node="slider" aria-label="Drag to compare the storyboard with the finished cartoon"><span class="handle"></span>
+            </div>
+            <span class="lp-tag t1" aria-hidden="true">◆ Poses + a path</span><span class="lp-tag t2" aria-hidden="true">🎬 A cartoon!</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section ytf" id="watch">
+        <div class="ui-wrap">
+          <div class="ytf-in">
+            <div class="ytf-copy">
+              <h2><svg viewBox="0 0 28 20" width="28" height="20" aria-hidden="true" class="ytf-logo"><rect width="28" height="20" rx="5" fill="#FF0033"/><path d="M11.2 5.8v8.4l7.3-4.2z" fill="#fff"/></svg>See ToonyLoony in about a minute</h2>
+              <p>A short video tour of what ToonyLoony does and how it works.</p>
+              <a class="ytf-link" href="https://www.youtube.com/watch?v=mfsUukKdXQY" target="_blank" rel="noopener">Watch on YouTube &#8599;</a>
+            </div>
+            <div>
+              <div class="ytf-frame"><button type="button" class="ytf-cover" data-yt-film="mfsUukKdXQY" data-yt-title="ToonyLoony video" aria-label="Play the ToonyLoony video (1:15)"><img src="_/theme/yt-cover.jpg" alt="" loading="lazy" decoding="async" width="960" height="540"><span class="ytf-play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.3.3 34 .3 34 .3s-21.3 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6c5.2 1.4 26.5 1.4 26.5 1.4s21.3 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#FF0033"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span><span class="ytf-len">1:15</span></button></div>
+              <p class="ytf-note">The video loads from YouTube when you press play.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section" id="how">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>Three steps to your first cartoon</h2><p>Most people make their first scene in about five minutes.</p></div>
+          <div class="lp-steps">
+            <div class="ui-card lp-step"><canvas class="lp-stepcv" width="400" height="220" anvil:dom-node="step0" aria-hidden="true"></canvas><h3>🧍 Build a character</h3><p class="muted">Pick a body type (hero, robot, pup, birdy, caterpillar...), then mix heads, faces, hair, hats, clothes, colours and extras. Stuck? Roll the dice!</p></div>
+            <div class="ui-card lp-step"><canvas class="lp-stepcv" width="400" height="220" anvil:dom-node="step1" aria-hidden="true"></canvas><h3>🕺 Teach it moves</h3><p class="muted">Every character comes with ready-made moves like walk, run, sneak and dance. Make your own by bending the joints: each pose is a keyframe ◆.</p></div>
+            <div class="ui-card lp-step"><canvas class="lp-stepcv" width="400" height="220" anvil:dom-node="step2" aria-hidden="true"></canvas><h3>🔴 Hold to record</h3><p class="muted">Put characters on a stage, pick a move and a speed, then press and hold one and move it around. Rewind, and record the next one alongside.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>Everything a cartoon needs</h2></div>
+          <div class="lp-feats">
+            <div class="lp-feature"><i class="ic ic-smile"></i><h3>Characters from parts</h3><p>12 body types, 18 heads, 15 kinds of eyes, 25 hats and hairdos, capes, umbrellas, jetpacks and 24 colours. Plus 37 props and 30 places to film in.</p></div>
+            <div class="lp-feature"><i class="ic ic-move"></i><h3>Joints and sticks</h3><p>Drag the dots to bend elbows, knees, necks and tails. Onion skin shows your last pose, mirror flips it for walk cycles.</p></div>
+            <div class="lp-feature"><i class="ic ic-film"></i><h3>Hold-to-record studio</h3><p>While you hold a character, the clock runs and everyone else replays their part, so scenes line up by themselves. Slow-mo makes fast scenes easy.</p></div>
+            <div class="lp-feature"><i class="ic ic-mic"></i><h3>Voices with lip-sync</h3><p>Record a line while your movie plays, turn it into a chipmunk, a giant or a robot, and watch the character's mouth move with it.</p></div>
+            <div class="lp-feature"><i class="ic ic-music"></i><h3>Sounds and music</h3><p>22 cartoon sound effects (boing! ba-dum-tss!) and 8 music loops, made just for ToonyLoony. Or upload your own.</p></div>
+            <div class="lp-feature"><i class="ic ic-phone"></i><h3>Wide, Reel or Square</h3><p>Film in 16:9 for YouTube, 9:16 for Reels, TikTok and Shorts, 1:1 for Instagram posts or 4:5 for the feed. Slide the camera to pick your shot.</p></div>
+            <div class="lp-feature"><i class="ic ic-download"></i><h3>Download and share</h3><p>Save your cartoon as a video file, or (with an account) share a link so friends and family can watch it.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-head"><h2>Questions</h2></div>
+          <div class="lp-faq">
+            <details><summary>Is it free?</summary><p>Yes, all of it.</p></details>
+            <details><summary>Do I need an account?</summary><p>No. You can play as a guest and your toons are saved on your device. A free account keeps them safe and lets you share movies. Accounts are for people 16 or older, so younger makers can ask a parent or an older brother or sister.</p></details>
+            <details><summary>Who can see my cartoons?</summary><p>Only you, unless you share one. A shared movie plays for people who have its link. Sometimes we pick great ones to show in the Theater.</p></details>
+            <details><summary>Can I make videos for Reels, TikTok or Instagram?</summary><p>Yes. Pick Reel (9:16), Square (1:1) or Portrait (4:5) when you start a movie, or change the shape in the studio's Scene tab. The video you download comes out in that shape.</p></details>
+            <details><summary>Does ToonyLoony listen to my microphone?</summary><p>Only while you are recording a voice, after you press the red button. As a guest, your recordings never leave your device.</p></details>
+            <details><summary>Does it work on a tablet or phone?</summary><p>Yes: hold the character with your finger and move it. A bigger screen is comfier for the studio.</p></details>
+            <details><summary>Can I use my own pictures and music?</summary><p>Yes, if you made them or are allowed to use them. Please don't upload pictures of real people without asking them.</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="lp-section">
+        <div class="ui-wrap">
+          <div class="lp-band"><div><h2>Your first cartoon is five minutes away</h2><p>Pick a character. Hold it. Move it. Action!</p></div>
+            <a class="ui-btn yellow lg" href="#home">🎬 Start making</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </anvil-block>
+</anvil-form>

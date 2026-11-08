@@ -1,0 +1,13 @@
+<div class="ui dlg">
+  <div class="tl-modal-h"><span class="big" aria-hidden="true">🎙️</span><anvil-component type="Label" name="title_label" prop:text="Record a voice" prop:role='["dlg-title"]'></anvil-component></div>
+  <anvil-component type="Label" name="lead_label" prop:role='["fine-print"]'></anvil-component>
+  <label class="ui-field" anvil:name="actor_field"><span>Who's talking? <em>(their mouth moves with your voice)</em></span>
+    <anvil-component type="DropDown" name="actor_drop"></anvil-component>
+  </label>
+  <div class="tl-voice" anvil:dom-node="recorder"></div>
+  <label class="ui-field" anvil:name="name_field"><span>Name it</span><anvil-component type="TextBox" name="name_box" prop:placeholder="e.g. Blox says hi"></anvil-component></label>
+  <div class="ui-row end dlg-actions">
+    <anvil-component type="Button" name="cancel_button" prop:text="Cancel" prop:role='["btn", "btn-ghost"]'></anvil-component>
+    <anvil-component type="Button" name="use_button" prop:text="Use this voice" prop:role='["btn", "btn-primary"]'></anvil-component>
+  </div>
+</div>

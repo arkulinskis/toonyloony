@@ -1,0 +1,20 @@
+<div class="ui dlg">
+  <div class="tl-modal-h"><span class="big" aria-hidden="true">🎬</span><anvil-component type="Label" name="title_label" prop:text="New movie" prop:role='["dlg-title"]'></anvil-component></div>
+  <label class="ui-field"><span>What's it called?</span><anvil-component type="TextBox" name="name_box"></anvil-component></label>
+  <h3 class="tl-step">1. Pick a shape</h3>
+  <div class="st-shapes">
+    <anvil-component type="RepeatingPanel" name="shapes_panel" prop:item_template="ToonyLoony.Items.ShapePick" prop:role='["contents"]'></anvil-component>
+  </div>
+  <h3 class="tl-step">2. Pick a place</h3>
+  <div class="tl-pickgrid">
+    <anvil-component type="RepeatingPanel" name="places_panel" prop:item_template="ToonyLoony.Items.Pick" prop:role='["contents"]'></anvil-component>
+  </div>
+  <h3 class="tl-step">3. Pick your actors <span class="faint">(up to 4, add more later)</span></h3>
+  <div class="tl-pickgrid">
+    <anvil-component type="RepeatingPanel" name="cast_panel" prop:item_template="ToonyLoony.Items.Pick" prop:role='["contents"]'></anvil-component>
+  </div>
+  <div class="ui-row end dlg-actions">
+    <anvil-component type="Button" name="cancel_button" prop:text="Cancel" prop:role='["btn", "btn-ghost"]'></anvil-component>
+    <anvil-component type="Button" name="start_button" prop:text="🎬 Start filming" prop:role='["btn", "btn-yellow", "btn-lg"]'></anvil-component>
+  </div>
+</div>

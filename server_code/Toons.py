@@ -50,7 +50,17 @@ def movie_summary(r):
             "actors": len(d.get("actors") or []), "clips": len(d.get("clips") or []),
             "takes": sum(len(a.get("takes") or []) for a in (d.get("actors") or []) if isinstance(a, dict)),
             "shared": bool(r["shared"]), "share_key": r["share_key"] if r["shared"] else None,
-            "featured": bool(r["featured"]), "views": r["views"] or 0, "updated": C.iso(r["updated"])}
+            "featured": bool(r["featured"]), "views": r["views"] or 0, "updated": C.iso(r["updated"]),
+            "format": shape_of(d)}
+
+
+SHAPES = ("wide", "reel", "square", "portrait")
+
+
+def shape_of(d):
+    """The movie's canvas shape (the browser's TL.FORMATS); old movies are wide."""
+    f = d.get("format") if isinstance(d, dict) else None
+    return f if f in SHAPES else "wide"
 
 
 def _mine(table, me, uid):
