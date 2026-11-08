@@ -17,8 +17,8 @@ members (16+) save to the server and can share a watch link.
   "git" layout: the folder *is* the Anvil app; Anvil pulls master; pushing is the deploy. Live: **https://toonyloony.com**
   (Anvil address https://toonyloony.anvil.app).
 - Converted on 2026-11-06 from the JavaScript-template version (folder `toonyloony`, source layout + tools/deploy.py) on
-  branch `forms`. Until the user approves and it's merged, master and the live app still run the old version from the old
-  folder: don't deploy the old folder over master after the merge.
+  branch `forms`, merged to master 2026-11-07. The old folder is retired (its tools/deploy.py refuses to run, so it can't
+  overwrite master).
 - Made the template-forms way (`APP_MAKER\template-forms`); Anvil's own agent skills describe the same model
   (`APP_MAKER\vendor\anvil-agent-references`).
 - **README.md** lists every feature. Keep it up to date.
