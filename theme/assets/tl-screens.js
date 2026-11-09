@@ -914,8 +914,8 @@
     function onKey(e) {
       if (!movie || e.target.matches('input, textarea, select') || document.querySelector('.ui-modal-wrap')) return;
       if (e.key === ' ') { e.preventDefault(); playing ? pause() : play(); }
-      else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); }
-      else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') { e.preventDefault(); redo(); }
+      else if ((e.ctrlKey || e.metaKey) && (e.key || '').toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+      else if ((e.ctrlKey || e.metaKey) && (e.key || '').toLowerCase() === 'y') { e.preventDefault(); redo(); }
       else if (e.key === 'Home') seek(0);
       else if ((e.key === 'Delete' || e.key === 'Backspace') && item) { var d = view.querySelector('[data-a="delitem"]'); if (d) d.click(); }
       else if (e.key === 'ArrowRight') seek(t + (e.shiftKey ? 1 : .1));
