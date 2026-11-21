@@ -1,0 +1,35 @@
+<div class="ui dlg im">
+  <div class="tl-modal-h"><span class="big" aria-hidden="true">🎲</span><anvil-component type="Label" name="title_label" prop:text="Idea machine" prop:role='["dlg-title"]'></anvil-component></div>
+  <div class="im-sub">
+    <anvil-component type="Label" name="daily_label" prop:text="⭐ Idea of the day" prop:role='["badge", "im-daily"]'></anvil-component>
+    <anvil-component type="Label" name="lead_label" prop:text="Spin for a story. Lock the parts you like, then make the movie!" prop:role='["im-lead"]'></anvil-component>
+  </div>
+  <div class="im-reels" anvil:dom-node="reels">
+    <div class="im-reel" anvil:name="who_reel">
+      <div class="im-top"><span class="im-tag">Who</span><anvil-component type="Button" name="who_lock" prop:text="🔓 Lock" prop:role='["btn", "btn-sm", "im-lock"]'></anvil-component></div>
+      <div class="im-face im-pics"><img alt="" anvil:dom-node="hero_pic"><img alt="" anvil:dom-node="side_pic"></div>
+      <anvil-component type="Label" name="who_label" prop:role='["im-text"]'></anvil-component>
+    </div>
+    <div class="im-reel" anvil:name="where_reel">
+      <div class="im-top"><span class="im-tag">Where</span><anvil-component type="Button" name="where_lock" prop:text="🔓 Lock" prop:role='["btn", "btn-sm", "im-lock"]'></anvil-component></div>
+      <div class="im-face im-place"><img alt="" anvil:dom-node="place_pic"></div>
+      <anvil-component type="Label" name="where_label" prop:role='["im-text"]'></anvil-component>
+    </div>
+    <div class="im-reel" anvil:name="want_reel">
+      <div class="im-top"><span class="im-tag">Wants</span><anvil-component type="Button" name="want_lock" prop:text="🔓 Lock" prop:role='["btn", "btn-sm", "im-lock"]'></anvil-component></div>
+      <div class="im-face im-emoji" aria-hidden="true" anvil:dom-node="want_emoji"></div>
+      <anvil-component type="Label" name="want_label" prop:role='["im-text"]'></anvil-component>
+    </div>
+    <div class="im-reel" anvil:name="twist_reel">
+      <div class="im-top"><span class="im-tag">But...</span><anvil-component type="Button" name="twist_lock" prop:text="🔓 Lock" prop:role='["btn", "btn-sm", "im-lock"]'></anvil-component></div>
+      <div class="im-face im-emoji" aria-hidden="true" anvil:dom-node="twist_emoji"></div>
+      <anvil-component type="Label" name="twist_label" prop:role='["im-text"]'></anvil-component>
+    </div>
+  </div>
+  <anvil-component type="Label" name="story_label" prop:role='["im-story"]'></anvil-component>
+  <div class="ui-row end dlg-actions im-actions">
+    <anvil-component type="Button" name="today_button" prop:text="⭐ Today's idea" prop:role='["btn", "btn-ghost"]'></anvil-component>
+    <anvil-component type="Button" name="spin_button" prop:text="🎲 Spin" prop:role='["btn", "btn-primary", "btn-lg"]'></anvil-component>
+    <anvil-component type="Button" name="make_button" prop:text="🎬 Make this movie" prop:role='["btn", "btn-yellow", "btn-lg"]'></anvil-component>
+  </div>
+</div>

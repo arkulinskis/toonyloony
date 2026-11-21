@@ -8,6 +8,7 @@
           <div class="ui-row">
             <anvil-component type="Button" name="new_movie_button" prop:text="🎬 New movie" prop:role='["btn", "btn-yellow", "btn-lg"]'></anvil-component>
             <anvil-component type="Button" name="new_char_button" prop:text="🧍 New character" prop:role='["btn", "btn-lg", "hm-ghost"]'></anvil-component>
+            <anvil-component type="Button" name="idea_button" prop:text="🎲 Idea machine" prop:role='["btn", "btn-lg", "hm-ghost"]'></anvil-component>
           </div>
         </div>
         <canvas width="360" height="270" anvil:dom-node="duo" aria-hidden="true"></canvas>
@@ -18,11 +19,19 @@
         <anvil-component type="Label" name="import_label" prop:role='["banner-text"]'></anvil-component>
         <anvil-component type="Button" name="import_button" prop:text="Move them in" prop:role='["btn", "btn-primary"]'></anvil-component>
       </div>
-      <div class="tl-banner" anvil:name="guest_banner">
-        <span class="big" aria-hidden="true">🧸</span>
-        <p>You're playing as a guest: your toons are saved on this device only. A grown-up (16+) can make a free account to keep them safe and share them.</p>
-        <a class="ui-btn" href="#auth/signup">Make an account</a>
-      </div>
+      <section class="tl-safe" anvil:name="safe_card" aria-labelledby="safe-h">
+        <span class="big" aria-hidden="true">💾</span>
+        <div class="tl-safe-text">
+          <h2 id="safe-h" anvil:dom-node="safe_title">Keep your toons safe</h2>
+          <anvil-component type="Label" name="safe_label" prop:role='["safe-line"]'></anvil-component>
+          <anvil-component type="Label" name="safe_note" prop:role='["fine-print", "safe-note"]'></anvil-component>
+          <a class="tl-safe-link" anvil:name="safe_signup" href="#auth/signup">A grown-up (16+) can also make a free account</a>
+        </div>
+        <div class="ui-row tl-safe-btns">
+          <anvil-component type="Button" name="backup_button" prop:text="Save a backup" prop:role='["btn", "btn-primary", "ic-download"]'></anvil-component>
+          <anvil-component type="Button" name="open_button" prop:text="Open a file" prop:role='["btn", "ic-upload"]'></anvil-component>
+        </div>
+      </section>
 
       <div class="tl-sec">
         <h2>🎬 My movies</h2>

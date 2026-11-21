@@ -1,6 +1,8 @@
 """The Theater: shared cartoons. A member's "Share" makes a watch link (#watch/KEY) that works for anyone who
 has it; only movies an admin features are listed in the Theater. Anyone can report a movie (it lands in the
-admin's feedback inbox); admins feature, un-feature or un-share movies in Admin -> Toons."""
+admin's feedback inbox); admins feature, un-feature or un-share movies in Admin -> Toons.
+Anyone can remix a shared movie (Watch -> Remix it, done in the browser); remix_noted counts it in the optional
+movies.remixes column, read and written inside try/except so the app works before the Schema Mismatch is accepted."""
 import anvil.server
 from anvil.tables import app_tables
 import anvil.tables as tables
@@ -9,10 +11,18 @@ from . import common as C
 from . import DemoData, Toons
 
 
+def _remixes(r):
+    """How often a movie was remixed (0 while the column isn't in the database yet)."""
+    try:
+        return int(r["remixes"] or 0)
+    except Exception:
+        return 0
+
+
 def _card(r, me=None, with_data=False):
     d = r["data"] or {}
     out = {"key": r["share_key"], "name": r["name"], "author": C.name_of(r["owner"]), "thumb": r["thumb"],
-           "dur": r["dur"] or 0, "views": r["views"] or 0, "featured": bool(r["featured"]),
+           "dur": r["dur"] or 0, "views": r["views"] or 0, "remixes": _remixes(r), "featured": bool(r["featured"]),
            "mine": me is not None and r["owner"] == me, "demo": bool(r["is_demo"]),
            "bg": d.get("bg") if isinstance(d.get("bg"), str) else None, "format": Toons.shape_of(d)}
     if with_data and not r["thumb"]:
@@ -62,8 +72,48 @@ def watch_get(key):
     if key not in viewed and not (me is not None and owner == me):
         r["views"] = (r["views"] or 0) + 1
         getattr(anvil.server, "session")["viewed"] = (viewed + [key])[-200:]
+    card = _card(r, me)
+    card["remix_of"] = _remix_source(data.get("remix_of"))
     return C.ok(movie=dict(data, id=r["uid"], name=r["name"]), chars=chars, assets=assets,
-                card=_card(r, me), is_admin=C.is_admin(me))
+                card=card, is_admin=C.is_admin(me))
+
+
+def _remix_source(src):
+    """The credit line of a remix: the original's current name and maker while it's still shared (with its link),
+    else the name and maker saved in the remix, without a link."""
+    if not isinstance(src, dict):
+        return None
+    k = src.get("key")
+    o = app_tables.movies.get(share_key=k) if _key_ok(k) else None
+    if o is not None and o["shared"]:
+        return {"key": k, "name": o["name"], "author": C.name_of(o["owner"]), "live": True}
+    return {"key": None, "name": C.text(src.get("name"), 60) or "a cartoon", "author": C.text(src.get("author"), 60),
+            "live": False}
+
+
+@anvil.server.callable
+def remix_noted(key):
+    """Count a remix of a shared cartoon (the copy itself is made in the browser). Anyone may call it, so it's capped:
+    once per session per cartoon, 20 an hour, and never for the movie's owner."""
+    if not _key_ok(key):
+        return C.fail("That cartoon wasn't found.")
+    r = app_tables.movies.get(share_key=key)
+    if r is None or not r["shared"]:
+        return C.fail("That cartoon isn't shared any more.")
+    me = C.me()
+    if me is not None and r["owner"] == me:
+        return C.ok(counted=False)
+    done = anvil.server.session.get("remixed") or []
+    if key in done:
+        return C.ok(counted=False)
+    if C.rate_limited("remix", 20, 3600):
+        return C.fail("That's a lot of remixes this hour. Try again later.")
+    getattr(anvil.server, "session")["remixed"] = (done + [key])[-200:]
+    try:
+        r["remixes"] = _remixes(r) + 1
+    except Exception:
+        return C.ok(counted=False)  # no remixes column yet (Schema Mismatch not accepted)
+    return C.ok(counted=True)
 
 
 @anvil.server.callable

@@ -11,7 +11,8 @@ NAMES = ["The Big Adventure", "Super Silly Day", "The Mystery of the Missing Soc
 
 class NewMovie(NewMovieTemplate):
     """New movie: a name, the canvas shape (Wide, Reel, Square, Portrait), a place and up to 4 actors. Saves it
-    (TL.makeMovie: guests in this browser, members on the server) and closes with its id, or None."""
+    (TL.makeMovie: guests in this browser, members on the server) and closes with its id, or None.
+    "Give me an idea" closes with "idea" (tl.new_movie then opens the Idea machine)."""
 
     def __init__(self, **properties):
         super().__init__(**properties)
@@ -64,6 +65,11 @@ class NewMovie(NewMovieTemplate):
         movie_id = tl.TL.makeMovie((self.name_box.text or "").strip() or "My cartoon", self.bg, tl.js_value(self.picked),
                                    self.shape, self.my_chars)
         self.raise_event("x-close-alert", value=str(movie_id))
+
+    @handle("idea_button", "click")
+    def idea_button_click(self, **event_args):
+        state.store_set("lastShape", self.shape)  # the Idea machine films in the shape picked here
+        self.raise_event("x-close-alert", value="idea")
 
     @handle("cancel_button", "click")
     def cancel_button_click(self, **event_args):

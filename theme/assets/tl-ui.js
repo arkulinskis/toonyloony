@@ -84,6 +84,79 @@
     mv.thumb = TL.movieThumb(mv, map, 0);
     return TL.store.saveMovie(mv).then(function () { TL.store_flag('movie', true); return mv.id; });
   };
+  /* What the Idea machine (Dialogs/IdeaMachine, client_code/ideas.py) films: a 20 s movie with the hero and the sidekick
+     on the left, the prop they want on the right (and the twist's prop, if it has one), three story captions and a drum
+     roll into the twist. The kid only has to hold and drag.
+     idea = {name, bg, actors: [heroId, sidekickId], props: ['p_o_pizza', ...], captions: [3 texts], want, twist, day}.
+     Resolves with the new movie's id. */
+  TL.makeIdeaMovie = function (idea, format, myChars) {
+    idea = idea || {};
+    var mv = TL.newMovie(String(idea.name || 'My story').slice(0, 60), format);
+    mv.bg = idea.bg || 'b:park'; mv.dur = 20;
+    var map = TL.charMap((myChars || []).concat(TL.PRESET_LIST)), f = TL.frameOf(mv), narrow = f.w < 700;
+    var people = (idea.actors || []).map(function (id) { return map[id] || TL.PRESETS[id]; }).filter(Boolean).slice(0, 2);
+    var props = (idea.props || []).filter(function (id, i, all) { return id && TL.PRESETS[id] && all.indexOf(id) === i; }).slice(0, 2);
+    people.forEach(function (ch, i) {
+      var a = TL.newActor(ch, f.x + f.w * (narrow ? [.24, .52][i] : [.18, .36][i]), TL.GROUND + i * 24);
+      if (narrow) a.s = 1.15;
+      if (mv.actors.some(function (o) { return o.name === a.name; })) a.name = a.name + ' 2';
+      mv.actors.push(a);
+    });
+    props.forEach(function (id, i) {
+      var ch = TL.PRESETS[id], air = TL.isAir(ch);
+      var x = f.x + f.w * (i === 0 ? (narrow ? .8 : .78) : (narrow ? .5 : .58));
+      var y = air ? 170 + i * 50 : Math.round(TL.GROUND + i * 40 + (TL.footY(TL.PRESETS.p_blox) - TL.footY(ch)) * 1.3);
+      var a = TL.newActor(ch, x, y); a.flip = true;
+      if (narrow) a.s = 1.15;
+      mv.actors.push(a);
+    });
+    var times = [[.5, 5.5], [7, 12.5], [15, 20]];
+    (idea.captions || []).slice(0, 3).forEach(function (text, i) {
+      mv.bubbles.push({ id: TL.uid('b'), actor: null, t0: times[i][0], t1: times[i][1], text: String(text || '').slice(0, 140), style: 'say' });
+    });
+    // a drum roll whose crash lands on "But...", and a sparkle for "You decide!"
+    if (TL.builtinAudio('b:s_drumroll')) mv.clips.push({ id: TL.uid('q'), asset: 'b:s_drumroll', kind: 'sound', t: 5.45, vol: .7, rate: 1 });
+    if (TL.builtinAudio('b:s_magic')) mv.clips.push({ id: TL.uid('q'), asset: 'b:s_magic', kind: 'sound', t: 15, vol: .7, rate: 1 });
+    mv.idea = { want: idea.want == null ? null : idea.want, twist: idea.twist == null ? null : idea.twist, day: idea.day || null };
+    mv.thumb = TL.movieThumb(mv, map, 1);
+    return TL.store.saveMovie(mv).then(function () { TL.store_flag('movie', true); return mv.id; });
+  };
+  /* "Remix it" on a Watch page: your own copy of someone's shared cartoon, with a credit line (movie.remix_of).
+     data = what watch_get returned ({movie, chars, card}); key = its share key. Characters the maker built are copied
+     into your cast with new ids; premade ones stay as they are. Uploaded voices, sounds and pictures are never copied
+     (they stay with their maker): only built-in places, sounds and music come along. The original is never touched.
+     Resolves {id, dropped: {voices, sounds, pictures}, chars}. */
+  TL.remixMovie = function (data, key) {
+    data = data || {};
+    var src = TL.clone(data.movie || {}), theirs = data.chars || {}, card = data.card || {};
+    var dropped = { voices: 0, sounds: 0, pictures: 0 }, copies = {}, mine = [];
+    (src.actors || []).forEach(function (a) {
+      var ref = a.char;
+      if (TL.isPreset(ref) && TL.PRESETS[ref]) return;
+      if (copies[ref]) { a.char = copies[ref]; return; }
+      var ch = theirs[ref];
+      if (!ch || !Array.isArray(ch.bones)) { a.char = 'p_blox'; return; }
+      var c = TL.clone(ch);
+      c.id = TL.uid('c'); c.name = String(ch.name || a.name || 'Actor').slice(0, 60); delete c.preset; delete c.thumb;
+      try { c.thumb = TL.charThumb(c); } catch (e) { /* drawn later */ }
+      copies[ref] = c.id; a.char = c.id; mine.push(c);
+    });
+    src.clips = (src.clips || []).filter(function (c) {
+      if (c && typeof c.asset === 'string' && c.asset.indexOf('b:') === 0) return true;
+      if (c) { if (c.kind === 'voice') dropped.voices++; else dropped.sounds++; }
+      return false;
+    });
+    if (typeof src.bg === 'string' && src.bg.indexOf('a_') === 0) { src.bg = 'b:park'; dropped.pictures++; }
+    var mv = Object.assign(src, {
+      id: TL.uid('m'), name: ('Remix of ' + (src.name || 'a cartoon')).slice(0, 60),
+      remix_of: { key: String(key || ''), name: String(src.name || '').slice(0, 60), author: String(card.author || '').slice(0, 60) }
+    });
+    delete mv.thumb; delete mv.updated;
+    mv.thumb = TL.movieThumb(mv, TL.charMap(mine), null);
+    return mine.reduce(function (p, c) { return p.then(function () { return TL.store.saveChar(c, true); }); }, Promise.resolve())
+      .then(function () { return TL.store.saveMovie(mv); })
+      .then(function () { TL.store_flag('movie', true); return { id: mv.id, dropped: dropped, chars: mine.length }; });
+  };
   /* "Make it mine": copy a premade character into your cast. Resolves with the copy's id. */
   TL.copyPreset = function (id) {
     var c = TL.copyChar(TL.PRESETS[id], TL.PRESETS[id].name); c.thumb = TL.charThumb(c);
@@ -111,6 +184,7 @@
     return new Promise(function (resolve) {
       var inp = document.createElement('input'); inp.type = 'file'; inp.accept = accept; inp.style.display = 'none';
       inp.onchange = function () { resolve(inp.files && inp.files[0] || null); inp.remove(); };
+      inp.addEventListener('cancel', function () { resolve(null); inp.remove(); });  // closing the file picker (Chrome 113+, Safari 16.4+)
       document.body.appendChild(inp); inp.click();
     });
   };

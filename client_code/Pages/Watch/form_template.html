@@ -7,15 +7,17 @@
           <div>
             <anvil-component type="Label" name="title_label" prop:role='["wt-title"]'></anvil-component>
             <anvil-component type="Label" name="meta_label" prop:role='["wt-meta"]'></anvil-component>
+            <p class="wt-remix" anvil:name="remix_part"><span aria-hidden="true">🔁</span> Remix of <a anvil:dom-node="remix_a" href="#theater"></a><span anvil:dom-node="remix_by"></span></p>
           </div>
           <div class="ui-row">
             <a class="ui-btn" anvil:name="edit_link" href="#home"><i class="ic ic-edit"></i>Edit</a>
+            <anvil-component type="Button" name="remix_button" prop:text="🔁 Remix it" prop:role='["btn", "btn-primary"]'></anvil-component>
             <anvil-component type="Button" name="copy_button" prop:text="Copy link" prop:role='["btn", "ic-copy"]'></anvil-component>
             <anvil-component type="Button" name="report_button" prop:text="Report" prop:role='["btn", "btn-ghost", "ic-info"]'></anvil-component>
           </div>
         </div>
         <anvil-component type="ToonyLoony.Components.Player" name="player"></anvil-component>
-        <div class="wt-cta"><div><h2>Want to make one like this?</h2><p>Build a character, teach it moves, then hold it and drag it around to film. Free!</p></div><a class="ui-btn yellow lg" href="#home">🎬 Start making</a></div>
+        <div class="wt-cta"><div><h2>Want to make one like this?</h2><p>Remix this one into your own copy, or build a character, teach it moves, then hold it and drag it around to film. Free!</p></div><a class="ui-btn yellow lg" href="#home">🎬 Start making</a></div>
       </div>
       <div class="ui-empty" anvil:name="missing_part">
         <span class="ui-empty-emoji" aria-hidden="true">🎞️</span><h2>This cartoon isn't here</h2>

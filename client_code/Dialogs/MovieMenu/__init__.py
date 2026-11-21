@@ -5,7 +5,8 @@ from ... import state
 
 
 class MovieMenu(MovieMenuTemplate):
-    """What you can do with one of your movies. Closes with "open", "rename", "copy", "share", "delete" or None."""
+    """What you can do with one of your movies. Closes with "open", "rename", "copy", "file"
+    (a .toony backup of this movie), "share", "delete" or None."""
 
     def __init__(self, name="", **properties):
         super().__init__(**properties)
@@ -26,6 +27,10 @@ class MovieMenu(MovieMenuTemplate):
     @handle("copy_button", "click")
     def copy_button_click(self, **event_args):
         self._pick("copy")
+
+    @handle("file_button", "click")
+    def file_button_click(self, **event_args):
+        self._pick("file")
 
     @handle("share_button", "click")
     def share_button_click(self, **event_args):

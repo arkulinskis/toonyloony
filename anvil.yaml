@@ -1,36 +1,5 @@
 allow_embedding: false
 db_schema:
-  error_log:
-    client: none
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: when
-      type: datetime
-    - admin_ui: {order: 1, width: 120}
-      name: source
-      type: string
-    - admin_ui: {order: 2, width: 160}
-      name: kind
-      type: string
-    - admin_ui: {order: 3, width: 300}
-      name: message
-      type: string
-    - admin_ui: {order: 4, width: 300}
-      name: traceback
-      type: string
-    - admin_ui: {order: 5, width: 200}
-      name: page
-      type: string
-    - admin_ui: {order: 6, width: 120}
-      name: session
-      type: string
-    - admin_ui: {order: 7, width: 200}
-      name: user
-      target: users
-      type: link_single
-    indexes: []
-    server: full
-    title: Error log
   app_settings:
     client: none
     columns:
@@ -156,6 +125,53 @@ db_schema:
     indexes: []
     server: full
     title: Characters
+  error_log:
+    client: none
+    columns:
+    - admin_ui:
+        order: 0
+        width: 200
+      name: when
+      type: datetime
+    - admin_ui:
+        order: 1
+        width: 120
+      name: source
+      type: string
+    - admin_ui:
+        order: 2
+        width: 160
+      name: kind
+      type: string
+    - admin_ui:
+        order: 3
+        width: 300
+      name: message
+      type: string
+    - admin_ui:
+        order: 4
+        width: 300
+      name: traceback
+      type: string
+    - admin_ui:
+        order: 5
+        width: 200
+      name: page
+      type: string
+    - admin_ui:
+        order: 6
+        width: 120
+      name: session
+      type: string
+    - admin_ui:
+        order: 7
+        width: 200
+      name: user
+      target: users
+      type: link_single
+    indexes: []
+    server: full
+    title: Error log
   feedback:
     client: none
     columns:
@@ -261,6 +277,11 @@ db_schema:
         order: 9
         width: 200
       name: views
+      type: number
+    - admin_ui:
+        order: 13
+        width: 200
+      name: remixes
       type: number
     - admin_ui:
         order: 10
@@ -371,13 +392,14 @@ db_schema:
     server: full
     title: Users
 metadata:
-  description: "Build cartoon characters, animate them with joints and sticks, then hold and drag them to record them moving in your own cartoon movie, with voices and music."
-  logo_img: "asset:icon-512.png"
-  title: "ToonyLoony: build and animate your own cartoon movies"
+  description: Build cartoon characters, animate them with joints and sticks, then hold and drag them to record them moving
+    in your own cartoon movie, with voices and music.
+  logo_img: asset:icon-512.png
+  title: 'ToonyLoony: build and animate your own cartoon movies'
 name: ToonyLoony
 native_deps:
   head_html: |
-    <script src="_/theme/legal-kit.js?v=fb89a1a0b6"></script>
+    <script src="_/theme/legal-kit.js?v=8d1d55d1fa"></script>
     <!-- seo:start (APP_MAKER/seo: edit seo/apps/toonyloony.json and run seo.py, not here) -->
     <link rel="canonical" href="https://toonyloony.com/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -434,18 +456,19 @@ native_deps:
     <!-- Prepsto feedback panel: every "Submit feedback" link and button opens it (it is the only feedback channel). No floating button, no cookies, nothing loads until it is opened. Codes: APP_MAKER/prepsto-links.json -->
     <script src="https://prepsto.com/_/theme/widget.js" data-prepsto="ptkszwg" data-button="false" data-label="Submit feedback" async></script>
     <link rel="stylesheet" href="_/theme/icons.css?v=ff9c627a2c">
-    <link rel="stylesheet" href="_/theme/app.css?v=2e839832e0">
+    <link rel="stylesheet" href="_/theme/app.css?v=716cebd2e1">
     <script src="_/theme/app-kit.js?v=656a4a9c99"></script>
     <script src="_/theme/tl-kit.js?v=09d8ad47f4"></script>
     <script src="_/theme/tl-audio.js?v=4d6fb1a5a3"></script>
     <script src="_/theme/tl-core.js?v=54af5db036"></script>
+    <script src="_/theme/tl-backup.js?v=e03f767eb3"></script>
     <script src="_/theme/tl-movie.js?v=f45ad30670"></script>
     <script src="_/theme/tl-rig.js?v=3a98895a43"></script>
     <script src="_/theme/tl-props.js?v=933452083c"></script>
     <script src="_/theme/tl-scenes.js?v=5309d9dacc"></script>
-    <script src="_/theme/tl-ui.js?v=c98356c3fc"></script>
+    <script src="_/theme/tl-ui.js?v=017cd0ad50"></script>
     <script src="_/theme/tl-show.js?v=9e4033eb92"></script>
-    <script src="_/theme/tl-screens.js?v=e11590a2f6"></script>
+    <script src="_/theme/tl-screens.js?v=6d11ca9868"></script>
 package_name: ToonyLoony
 runtime_options:
   client_version: '3'

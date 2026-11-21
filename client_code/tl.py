@@ -91,9 +91,75 @@ def new_movie():
     """The New movie dialog. Opens the studio with the saved movie; returns its id (or None)."""
     from .Dialogs.NewMovie import NewMovie
     movie_id = alert(NewMovie(), buttons=[], large=True, role="app-dialog", dismissible=True)
+    if movie_id == "idea":  # "Give me an idea" in the dialog
+        return idea_machine()
     if movie_id:
         router.go("studio", movie_id)
     return movie_id
+
+
+def idea_machine():
+    """The Idea machine: spin a story, then film it (TL.makeIdeaMovie) and open the studio. Returns the movie id or None."""
+    from .Dialogs.IdeaMachine import IdeaMachine
+    dlg = IdeaMachine()
+    idea = alert(dlg, buttons=[], large=True, role="app-dialog", dismissible=True)
+    if not idea:
+        return None
+    shape = state.store_get("lastShape", "wide")
+    movie_id = attempt(lambda: TL.makeIdeaMovie(js_value(idea), shape, dlg.my_chars))
+    if not movie_id:
+        return None
+    state.toast("Your story is ready! Hold an actor and drag to film. 🎬", "ok")
+    router.go("studio", str(movie_id))
+    return str(movie_id)
+
+
+# ---------------------------------------------------------------- backup files (.toony, tl-backup.js)
+ASSET_WORDS = (("bg", "picture"), ("voice", "voice"), ("sound", "sound"), ("music", "music loop"))
+
+
+def _counts_text(c):
+    parts = [state.plural(int(c.get("movies") or 0), "movie"), state.plural(int(c.get("chars") or 0), "character")]
+    parts = [p for p in parts if not p.startswith("0 ")]
+    parts += [state.plural(int(c.get(k) or 0), word) for k, word in ASSET_WORDS if c.get(k)]
+    return ", ".join(parts)
+
+
+def backup(movie_id=None):
+    """Save everything (or one movie with its own characters and uploads) as a .toony file. Returns True when saved."""
+    state.toast("Packing your toons into a file...")
+    r = attempt(lambda: TL.backup.save(js_value({"movie": movie_id} if movie_id else {})))
+    if r is None:
+        return False
+    c = py_value(r.counts) or {}
+    msg = "Saved %s (%s MB). Keep the file somewhere safe: a USB stick, your email or a cloud drive." % (
+        _counts_text(c) or "your toons", r.mb)
+    if r.skipped:
+        msg += " %s couldn't be packed." % state.plural(int(r.skipped), "file")
+    state.toast(msg, "ok")
+    return True
+
+
+def open_backup():
+    """Pick a .toony file and add everything in it (never overwriting). Returns the counts dict, or None."""
+    f = TL.chooseFile(".toony,application/json,.json")
+    if not f:
+        return None
+    state.toast("Opening your backup...")
+    r = attempt(lambda: TL.backup.open(f))
+    if r is None:
+        return None
+    c = py_value(r) or {}
+    text = _counts_text(c)
+    if text:
+        msg = "Opened " + text + "!"
+        if c.get("failed"):
+            msg += " %s couldn't be added: %s" % (state.plural(int(c["failed"]), "thing"), c.get("error") or "")
+        state.toast(msg, "ok")
+        TL.confetti()
+    else:
+        state.toast("Nothing could be opened from that file. " + (c.get("error") or ""), "error")
+    return c
 
 
 def create_character():

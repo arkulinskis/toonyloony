@@ -121,6 +121,15 @@ Export sizes = TL.FORMATS[].out. Old movies need nothing (wide).
 - **Restyle:** tokens at the top of app.css come from the scratch builder used in the conversion; edit app.css directly now
   (light + dark blocks), the spinner in theme.css, `LEGAL_THEME` in startup.py.
 
+- **Backup files:** `theme/assets/tl-backup.js` (TL.backup.make/save/read/open; format in its header); `tl.backup()` /
+  `tl.open_backup()`; Home `_draw_safe` (UI.store `lastBackup`, `persistAsked`). Opening checks everything before saving.
+- **Idea machine:** rows in `client_code/ideas.py` (WANTS / TWISTS; prop ids `p_o_*` from tl-props.js), the dialog
+  `Dialogs/IdeaMachine`, `tl.idea_machine()`, `TL.makeIdeaMovie` (placement, captions, clips). Idea of the day = a seeded
+  generator on the date (`_DayRng`, not Skulpt's random) over the premade cast only. UI.store `ideaDay`.
+- **Remix:** `TL.remixMovie` (tl-ui.js) + `Pages/Watch` remix_button/remix_part; server `Theater.remix_noted` (public,
+  once per session, 20/hour, never the owner) and `_remix_source` (credit line resolved at watch time). `movies.remixes`
+  is read/written in try/except so the app works before the Schema Mismatch is accepted.
+
 ## Gotchas
 
 - Guests: everything goes through `TL.store`; never call the toon server functions from a page for data guests also have.
